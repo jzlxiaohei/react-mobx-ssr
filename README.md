@@ -28,16 +28,15 @@ const ReactCompositeComponent = require("react/lib/ReactCompositeComponent");
 ReactCompositeComponent.Mixin._mountComponent = ReactCompositeComponent.Mixin.mountComponent;
 
 ReactCompositeComponent.Mixin.mountComponent = function(transaction, hostParent, hostContainerInfo, context) {
- 
 
-let html = '';
-if(this._instance.createCacheKey){
-	cosnt key = this._instance.createCacheKey();
-	html =	getHtmlFromCache(key); // 遗憾的是，目前看，必须是同步的，因此只能存内存...
-}else{
-	html = this._mountComponent(transaction, hostParent, hostContainerInfo, context)
-}
-  return html
+    let html = '';
+    if(this._instance.createCacheKey){
+        cosnt key = this._instance.createCacheKey();
+        html =	getHtmlFromCache(key); // 遗憾的是，目前看，必须是同步的，因此只能存内存...
+    }else{
+        html = this._mountComponent(transaction, hostParent, hostContainerInfo, context)
+    }
+    return html
 };
 ```
 
@@ -118,7 +117,7 @@ function empty() {
   return ''
 }
 
-
+// TODO postcss
 if (constants.isProduction && !constants.isBuild) {
   hook(empty, '.scss');
   hook(empty, '.css');
