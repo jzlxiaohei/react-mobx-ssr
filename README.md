@@ -79,7 +79,7 @@ ReactCompositeComponent.Mixin.mountComponent = function(transaction, hostParent,
 
   (a. webpack prod下的配置 
 	
-		```javascript
+```javascript
 		new webpack.optimize.CommonsChunkPlugin({
       		name: 'common',
       		minChunks: function (module, count) {
@@ -87,7 +87,7 @@ ReactCompositeComponent.Mixin.mountComponent = function(transaction, hostParent,
 	      		return module.resource && !_.startsWith(module.resource, constants.pageBaseDir)
       		},
     	}),
-		```
+```
 		
   (b. 以 pages里有可能应用外面的样式的文件，通过分析文件名，如果在pages的文件夹下，编译样式的时候，是要忽略的。具体见 `server/build/build.js`里的代码
 
