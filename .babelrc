@@ -1,0 +1,25 @@
+{
+  "presets": [
+    "react",
+    "stage-0",
+    "es2015"
+  ],
+  "plugins": [
+    "add-module-exports",
+    "react-hot-loader/babel",
+    "transform-decorators-legacy",
+    "transform-class-properties"
+  ],
+  "env": {
+    "server": {
+      "plugins": [
+        [
+          "babel-plugin-webpack-alias",
+          {
+            "config": "./webpack/webpack.config.common.js"
+          }
+        ]
+      ]
+    }
+  }
+}
