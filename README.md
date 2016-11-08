@@ -20,7 +20,7 @@ visit localhost:8080/fallback. just demo for fallback. real server wip!
 ## 说明
 研究了两个星期的`React`同构.脉络已经清晰.因为我的选型，使用了mobx而不是redux。不过其实难点根本不在于使用什么状态管理工具。
 
-目前只有一个技术点还没完全落实，就是组件级的自定义缓存策略。不过通过借鉴 沃尔玛的[实践](https://github.com/electrode-io/electrode-react-ssr-caching), 这部分的基本实现其实有了，不过缓存的策略还需要细化。示意代码如下。
+目前只有一个技术点还没完全落实，就是组件级的自定义缓存策略。不过通过借鉴 沃尔玛的[实践](https://github.com/electrode-io/electrode-react-ssr-caching), 稍加改造，这部分的基本实现其实有的，不过缓存的策略还需要细化。示意代码如下。
 
 ```javascript
 const ReactCompositeComponent = require("react/lib/ReactCompositeComponent");
