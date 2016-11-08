@@ -45,7 +45,7 @@ ReactCompositeComponent.Mixin.mountComponent = function(transaction, hostParent,
 老闭门造车也不是个事，所以写点东西，把现在的研究说明一下，看有没有同学一起推进。目前能做到：
 
 ### feature
-1. 通过配置，可以做到自动降级。如果负责渲染的服务器挂了，降级到前端渲染的版本。当然如果你的静态文件服务器也挂了，那谁都没辙。执行过
+1. 通过配置，可以做到自动降级。如果负责渲染的服务器挂了，降级到前端渲染的版本。当然如果你的静态文件服务器也挂了，那谁都没辙。
 2. 以每个页面为单位进行 code split。
 3. 开发时，服务端虽然没有hot-reload，但是刷新即可生效，不用重启dev-server
 4. 以客户端为主，最小化对client端代码的影响.（基本就是加了一个 `decorator`)
