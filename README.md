@@ -79,7 +79,7 @@ ReactCompositeComponent.Mixin.mountComponent = function(transaction, hostParent,
 
   (a. webpack prod下的配置 
 	
-		``` javascript
+		```javascript
 		new webpack.optimize.CommonsChunkPlugin({
       		name: 'common',
       		minChunks: function (module, count) {
