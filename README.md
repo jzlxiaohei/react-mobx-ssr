@@ -54,7 +54,7 @@ ReactCompositeComponent.Mixin.mountComponent = function(transaction, hostParent,
 ```html
 ...
         <link rel="stylesheet" type="text/css" href="/assets/common.64b770624e8c9ae0e8b3.css">
-        <style> <!-inline page style just for this page--> </style>
+        <style> <!--inline page style just for this page--> </style>
         <script>
             window.__mobxInjectedStore={{ initDataStr }} // repalce dynamic by server
         </script>
