@@ -49,7 +49,7 @@ ReactCompositeComponent.Mixin.mountComponent = function(transaction, hostParent,
 2. 以每个页面为单位进行 code split。
 3. 开发时，服务端虽然没有hot-reload，但是刷新即可生效，不用重启dev-server
 4. 以客户端为主，最小化对client端代码的影响.（基本就是加了一个 `decorator`)
-5. 发布后，每个页面，处理`initData`和由`initData`渲染的react string，这些需要动态请求和生成，其他的静态都资源已经准备好。大致如下面这样
+5. 发布后，每个页面，除了`initData`和由`initData`渲染的react string，这些需要动态请求和生成，其他的静态都资源已经准备好。大致如下面这样
 
 ```html
 ...
