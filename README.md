@@ -11,7 +11,7 @@ visit [localhost:3333](http://localhost:3333) to dev
 	
 prod:
 	
-	npm run json-wp // then the assets files in `dist` , views file in server/views
+	npm run html-wp// then the assets files in `dist` , views file in server/views
 	npm run api // start api server..
 	npm run server
 	
