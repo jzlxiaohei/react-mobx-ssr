@@ -7,15 +7,19 @@ dev:
 	yarn install
 	npm start
 
-visit localhost:3333
+visit [localhost:3333](http://localhost:3333) to dev
 	
 prod:
 	
 	npm run json-wp // then the build files in `dist` 
-	npm start // just api server..
-	http-server dist // install http-server global first
+	npm run api // start api server..
+	npm run server
 	
-visit localhost:8080/fallback. just demo for fallback. real server wip!
+visit 
+
+1. [localhost:3000](http://localhost:3000)  to see server render
+
+2. [localhost:3000/fallback](localhost:3000/fallback)  for pure static server. (just demo , in production should use nginx server fallback
 
 ## 说明
 研究了两个星期的`React`同构.脉络已经清晰.因为我的选型，使用了mobx而不是redux。不过其实难点根本不在于使用什么状态管理工具。

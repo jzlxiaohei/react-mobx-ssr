@@ -28,13 +28,13 @@ function getHashPath(entryName) {
   }
 }
 
-function createLink(src) {
-  return `<link rel="stylesheet" type="text/css" href="${src}">`
-}
-
-function createScript(src) {
-  return `<script src="${src}"></script>`
-}
+// function createLink(src) {
+//   return `<link rel="stylesheet" type="text/css" href="${src}">`
+// }
+//
+// function createScript(src) {
+//   return `<script src="${src}"></script>`
+// }
 
 function renderView(options) {
   return `
@@ -42,15 +42,16 @@ function renderView(options) {
   <html lang="cn">
   <head>
       <meta charset="UTF-8">
+      <link rel="icon" href="data:;base64,iVBORw0KGgo=">
       <title>Title</title>
-      ${constants.isProduction ? createLink(getHashPath('common.css')) : ''}
+      <link rel="stylesheet" href="${getHashPath('main.css')}">
       <style>${ options.cssContent || '' }</style>
       <script>
-          window.__mobxInjectedStore=${ options.initData ? JSON.stringify(options.initData):'{{ initDataStr }}' }
+          window.__mobxInjectedStore=${ options.initData ? JSON.stringify(options.initData):'{{{ initDataStr }}}' }
       </script>
   </head>
   <body>
-      <div id="root">${ options.reactContent || '{{ reactContent }}'}</div>
+      <div id="root">${ options.reactContent || '{{{ reactContent }}}'}</div>
       
       <div id="global-loading-cover" style="display: none">
         <div class="spinner">
@@ -59,8 +60,6 @@ function renderView(options) {
             <div class="bounce3"></div>
         </div>
       </div>
-      ${constants.isProduction ? createScript(getHashPath('manifest.js')) : ''}
-      ${constants.isProduction ? createScript(getHashPath('common.js')) : ''}
       <script src="${getHashPath('main.js')}"></script>
       <script src="${getHashPath(options.pageJsPath)}"></script>
   </body>
@@ -74,9 +73,9 @@ function renderFallbackView() {
   <html lang="cn">
   <head>
       <base href='/fallback'>
+      <link rel="stylesheet" href="${getHashPath('main.css')}">
       <meta charset="UTF-8">
       <title>Title</title>
-      ${constants.isProduction ? createLink(getHashPath('common.css')) : ''}
   </head>
   <body>
       <div id="root"></div>
@@ -88,8 +87,6 @@ function renderFallbackView() {
             <div class="bounce3"></div>
         </div>
       </div>
-      ${constants.isProduction ? createScript(getHashPath('manifest.js')) : ''}
-      ${constants.isProduction ? createScript(getHashPath('common.js')) : ''}
       <script src="${getHashPath('main.js')}"></script>
   </body>
 </html>

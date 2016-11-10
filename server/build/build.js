@@ -1,15 +1,18 @@
 import '../../require-hook';
-import routes from '../../src/routes/config';
 import path from 'path';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import CleanCSS from 'clean-css';
 import bluebird from 'bluebird'
+
+import fsExtra from 'fs-extra';
+import  { minify as htmlMinify} from 'html-minifier';
+import routes from '../../src/routes/config';
 import constants from '../../constants';
 import { isFileInPageDir, isFileWithSuffixes } from '../utils/fileFilter';
 import { getRelatedModules, getStyleModuleContent } from '../utils/moduleUtils'
 import renderView, { renderFallbackView } from '../renderView';
-import fsExtra from 'fs-extra';
+import getViewPathByLoadPath from '../getViewPathByLoadPath';
 
 const outputFile = bluebird.promisify(fsExtra.outputFile);
 
@@ -25,12 +28,19 @@ function findStyleModule(modules) {
   });
 }
 
+function getMinifyHtml(html) {
+  return  htmlMinify(html, {
+    minifyCSS: true,
+    removeComments: true,
+    collapseWhitespace: true,
+    minifyJS: true
+  });
+}
 
 const allPromises = routes.map(route => {
   const loadPath = route.loadPath;
   if (loadPath) {
     const pageName = loadPath;
-    const routePath = (route.path == '/' || route.path == '') ? 'index' : route.path;
     const pagePath = path.join(constants.pageBaseDir, pageName);
     const component = require(pagePath);
     const firstModule = require.cache[require.resolve(pagePath)];
@@ -46,16 +56,14 @@ const allPromises = routes.map(route => {
       result.reactContent = ReactDOMServer.renderToString(React.cloneElement(component));
     }
     const html = renderView(result);
-    // TODO minify html use html-minifier
-
-    // TODO generate html just for demo, remove it!!!
-    fsExtra.outputFileSync(path.join(constants.htmlBuildDir, routePath) + '.html', html);
-    return outputFile(path.join(constants.htmlBuildDir, routePath) + '.json', JSON.stringify(result));
+    const minifyHtml = getMinifyHtml(html)
+    const viewPath = getViewPathByLoadPath(loadPath);
+    return outputFile(path.join(constants.htmlBuildDir, viewPath), minifyHtml);
   }
 });
 
 const fallbackHtml = renderFallbackView();
-const fallbackPromise = outputFile(path.join(constants.htmlBuildDir, 'fallback.html'),fallbackHtml);
+const fallbackPromise = outputFile(path.join(constants.htmlBuildDir, 'fallback.html'), getMinifyHtml(fallbackHtml));
 
 allPromises.push(fallbackPromise);
 Promise.all(allPromises).then(() => console.log('html files created'));

@@ -38,17 +38,6 @@ const config = webpackMerge(commonConfig, {
       }
     }),
     new ExtractTextPlugin("[name].[chunkhash].css"),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'common',
-      minChunks: function (module, count) {
-        //非页面下的资源，都是common的
-        return module.resource && !_.startsWith(module.resource, constants.pageBaseDir)
-      },
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'manifest',
-      chunks: ['common']
-    })
   ]
 });
 

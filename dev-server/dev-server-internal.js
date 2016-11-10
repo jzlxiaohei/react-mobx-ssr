@@ -1,4 +1,4 @@
-import './require-hook';
+import '../require-hook';
 
 import React from 'react';
 import path from 'path';
@@ -7,15 +7,15 @@ import webpack from 'webpack';
 import httpProxy from "http-proxy";
 import _ from 'lodash';
 import cors from 'cors';
-import config from './webpack/webpack.config.dev';
-import wrapRouteWithLoadPage from './src/routes/wrapRouteWithLoadPage';
-import loadPageServer from './server/loadPageServer';
-import getComponentInfoByPath from './server/getComponentInfoByPath';
-import renderView from './server/renderView'
+import config from '../webpack/webpack.config.dev';
+import wrapRouteWithLoadPage from '../src/routes/wrapRouteWithLoadPage';
+import loadPageServer from '../server/loadPageServer';
+import getComponentInfoByPath from '../server/getComponentInfoByPath';
+import renderView from '../server/renderView'
 import chokidar from 'chokidar';
 
+const routeConfigPath = path.join(__dirname,'../src/routes/config.js');
 let routes;
-const routeConfigPath = path.join(__dirname,'src/routes/config.js');
 function loadRoutes(){
   routes = require(routeConfigPath);
   wrapRouteWithLoadPage(routes, loadPageServer);
@@ -84,9 +84,6 @@ app.get('*', asyncWrapper(async function (req, res, next) {
   res.end(html);
 }));
 
-app.use(function (req, res) {
-  return res.sendFile(path.join(__dirname, 'src/index.html'));
-});
 
 process.on('uncaughtException', function (err) {
   console.log(err);

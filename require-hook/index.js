@@ -25,7 +25,6 @@ function empty() {
   return ''
 }
 
-
 if (constants.isProduction && !constants.isBuild) {
   hook(empty, '.scss');
   hook(empty, '.css');
@@ -34,17 +33,17 @@ if (constants.isProduction && !constants.isBuild) {
   hook(outputFileContent, '.css');
 }
 
-
-function ignoreStyle() {
-  hook(empty, '.scss');
-  hook(empty, '.css');
-}
-
-function compileStyle() {
-  hook(compileSass, '.scss');
-  hook(outputFileContent, '.css');
-}
-
-export {
-  ignoreStyle, compileStyle
-}
+//
+// function ignoreStyle() {
+//   hook(empty, '.scss');
+//   hook(empty, '.css');
+// }
+//
+// function compileStyle() {
+//   hook(compileSass, '.scss');
+//   hook(outputFileContent, '.css');
+// }
+//
+// export {
+//   ignoreStyle, compileStyle
+// }

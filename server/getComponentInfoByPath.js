@@ -34,6 +34,7 @@ async function getInfoByPath(reqPath, routes) {
     cssContent: component.$css,
     initData: {[component.pageName]:stores},
     reactContent,
+    loadPath: routeInfo._originRouteConfig.loadPath
   };
 }
 

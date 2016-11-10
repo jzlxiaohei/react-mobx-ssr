@@ -40,3 +40,4 @@ qrconfig.json
 dist
 preDist
 manifest
+server/views

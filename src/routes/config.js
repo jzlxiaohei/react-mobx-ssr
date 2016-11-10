@@ -1,9 +1,9 @@
 /**
- * loadPath: string for components path ,based by 'src/pages', for load dynamic
+ * loadPath: string for components path ,based by 'src/pages'.
+ *      required. very important for isomorphic render .
  *
- * component: react component, for load static.
+ * component: react component, for load static, if not provide, load dynamically.
  *
- * prefer `loadPath` for webpack code split.
  *
  */
 const routes = [

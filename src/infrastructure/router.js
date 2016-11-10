@@ -73,12 +73,14 @@ function resolveComponentByRoute(routes, location) {
         return {
           component,
           props,
+          _originRouteConfig: route,
         };
       });
     }
     return Promise.resolve({
       component: route.component,
       props,
+      _originRouteConfig: route,
     });
   }
 

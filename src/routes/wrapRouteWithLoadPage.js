@@ -9,10 +9,12 @@
 /* eslint-disable  no-param-reassign */
 function wrapWithLoadPage(routes, loadPage) {
   routes.forEach((route) => {
-    if (route.loadPath) {
-      route.load = () => {
-        return loadPage(route.loadPath);
-      };
+    if (!route.component) {
+      if (route.loadPath) {
+        route.load = () => {
+          return loadPage(route.loadPath);
+        };
+      }
     }
   });
 }
