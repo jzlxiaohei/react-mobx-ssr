@@ -19,7 +19,7 @@ visit
 
 1. [localhost:3000](http://localhost:3000)  to see server render
 
-2. [localhost:3000/fallback](http://localhost:3000/fallback)  for pure static server. (just demo , in production should use nginx server fallback
+2. [localhost:3000/fallback](http://localhost:3000/fallback)  for pure static server. (just demo , in production should use nginx serve fallback
 
 ## 说明
 研究了两个星期的`React`同构.脉络已经清晰.因为我的选型，使用了mobx而不是redux。不过其实难点根本不在于使用什么状态管理工具。
